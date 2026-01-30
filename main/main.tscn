@@ -1,6 +1,14 @@
 [gd_scene format=3 uid="uid://depqkrnttgwqh"]
 
-[node name="Main" type="Node" unique_id=416299869]
+[ext_resource type="Script" uid="uid://2uxf71knheco" path="res://main/main.gd" id="1_53q0u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4hihk"]
+
+[node name="Main" type="Node" unique_id=416299869 node_paths=PackedStringArray("input_te", "preview_te", "transliterate_btn")]
+script = ExtResource("1_53q0u")
+input_te = NodePath("UI/Action Area/VBox/HBox/Input")
+preview_te = NodePath("UI/Action Area/VBox/HBox/Preview")
+transliterate_btn = NodePath("UI/Action Area/VBox/Transliterate")
 
 [node name="UI" type="Control" parent="." unique_id=930384338]
 layout_mode = 3
@@ -21,16 +29,56 @@ color = Color(0.039215688, 0.039215688, 0.039215688, 1)
 
 [node name="Title" type="Label" parent="UI" unique_id=1543837904]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
 offset_left = -179.0
-offset_top = -38.5
+offset_top = 64.0
 offset_right = 179.0
-offset_bottom = 38.5
+offset_bottom = 141.0
 grow_horizontal = 2
-grow_vertical = 2
 theme_override_font_sizes/font_size = 56
 text = "Hinglish Flow"
+
+[node name="Action Area" type="Panel" parent="UI" unique_id=245334489]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 192.0
+offset_top = -308.0
+offset_right = -192.0
+offset_bottom = 388.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_4hihk")
+
+[node name="VBox" type="VBoxContainer" parent="UI/Action Area" unique_id=252050891]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 25
+
+[node name="HBox" type="HBoxContainer" parent="UI/Action Area/VBox" unique_id=1977364827]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Input" type="TextEdit" parent="UI/Action Area/VBox/HBox" unique_id=477463956]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 36
+
+[node name="Preview" type="TextEdit" parent="UI/Action Area/VBox/HBox" unique_id=1871398691]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 36
+editable = false
+
+[node name="Transliterate" type="Button" parent="UI/Action Area/VBox" unique_id=1275516521]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Transliterate"
