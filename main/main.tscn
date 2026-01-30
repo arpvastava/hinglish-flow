@@ -1,14 +1,18 @@
 [gd_scene format=3 uid="uid://depqkrnttgwqh"]
 
 [ext_resource type="Script" uid="uid://2uxf71knheco" path="res://main/main.gd" id="1_53q0u"]
+[ext_resource type="PackedScene" uid="uid://d2a10rmvg453n" path="res://main/transliterate/transliterate_llm.tscn" id="2_pjrb6"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4hihk"]
 
-[node name="Main" type="Node" unique_id=416299869 node_paths=PackedStringArray("input_te", "preview_te", "transliterate_btn")]
+[node name="Main" type="Node" unique_id=416299869 node_paths=PackedStringArray("input_te", "preview_te", "transliterate_btn", "transliterate_llm")]
 script = ExtResource("1_53q0u")
 input_te = NodePath("UI/Action Area/VBox/HBox/Input")
 preview_te = NodePath("UI/Action Area/VBox/HBox/Preview")
 transliterate_btn = NodePath("UI/Action Area/VBox/Transliterate")
+transliterate_llm = NodePath("Transliterate LLM")
+
+[node name="Transliterate LLM" parent="." unique_id=518322247 instance=ExtResource("2_pjrb6")]
 
 [node name="UI" type="Control" parent="." unique_id=930384338]
 layout_mode = 3

@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://d2a10rmvg453n"]
+
+[ext_resource type="Script" uid="uid://d3f7pccalcj0l" path="res://main/transliterate/transliterate_llm.gd" id="1_ah1ts"]
+
+[node name="Transliterate LLM" type="Node" unique_id=518322247 node_paths=PackedStringArray("http_request")]
+script = ExtResource("1_ah1ts")
+system_prompt = "A text will be given which would contain a mix of English and Hindi words. Transliterate any Hindi words into Devanagari script, while keep English words as it is (in Latin script)."
+http_request = NodePath("HTTPRequest")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="." unique_id=484657264]
