@@ -35,7 +35,7 @@ func _process(_delta: float) -> void:
 
 func _transliterate() -> void:
 	is_transliterating = true
-	transliterate_llm.ask_gemini(input_te.text)
+	transliterate_llm.ask_chatgpt(input_te.text)
 
 
 func _on_transliteration_received(text: String) -> void:

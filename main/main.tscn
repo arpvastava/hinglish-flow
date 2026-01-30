@@ -82,6 +82,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 36
 editable = false
+wrap_mode = 1
 
 [node name="Transliterate" type="Button" parent="UI/Action Area/VBox" unique_id=1275516521]
 layout_mode = 2

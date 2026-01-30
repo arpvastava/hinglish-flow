@@ -6,3 +6,4 @@ extends Node
 class_name ENV_EXAMPLE
 
 static var GEMINI_API: String = ""
+static var OPENAI_API: String = ""
