@@ -2,9 +2,12 @@
 
 [ext_resource type="Script" uid="uid://d3f7pccalcj0l" path="res://main/transliterate/transliterate_llm.gd" id="1_ah1ts"]
 
-[node name="Transliterate LLM" type="Node" unique_id=518322247 node_paths=PackedStringArray("http_request")]
+[node name="Transliterate LLM" type="Node" unique_id=518322247 node_paths=PackedStringArray("gemini_http_request", "openai_http_request")]
 script = ExtResource("1_ah1ts")
 system_prompt = "A text will be given to you which would contain a mix of English and Hindi words, but all words will be written in Latin script only irrespective of language. Your objective will be to transliterate any Hindi words into Devanagari script, while keep English words as it is (in Latin script)."
-http_request = NodePath("HTTPRequest")
+gemini_http_request = NodePath("Gemini HTTP Request")
+openai_http_request = NodePath("OpenAI HTTP Request2")
 
-[node name="HTTPRequest" type="HTTPRequest" parent="." unique_id=484657264]
+[node name="Gemini HTTP Request" type="HTTPRequest" parent="." unique_id=484657264]
+
+[node name="OpenAI HTTP Request2" type="HTTPRequest" parent="." unique_id=1333875693]

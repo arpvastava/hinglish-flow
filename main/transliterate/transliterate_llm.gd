@@ -5,12 +5,17 @@ class_name TransliterateLLM
 signal transliteration_received
 signal transliteration_failed
 
+@export_group("Instructions")
 @export_multiline var system_prompt: String
-@export var http_request: HTTPRequest
+
+@export_group("References")
+@export var gemini_http_request: HTTPRequest
+@export var openai_http_request: HTTPRequest
 
 
 func _ready() -> void:
-	http_request.request_completed.connect(_on_request_completed)
+	gemini_http_request.request_completed.connect(_on_gemini_request_completed)
+	openai_http_request.request_completed.connect(_on_openai_request_completed)
 
 
 func ask_gemini(text: String) -> void:
@@ -35,7 +40,7 @@ func ask_gemini(text: String) -> void:
 		]
 	}
 	
-	var error = http_request.request(
+	var error = gemini_http_request.request(
 		url,
 		[
 			"Content-Type: application/json"
@@ -65,7 +70,7 @@ func ask_chatgpt(text: String) -> void:
 		"input": text
 	}
 	
-	var error = http_request.request(
+	var error = openai_http_request.request(
 		url,
 		headers,
 		HTTPClient.METHOD_POST,
@@ -78,7 +83,18 @@ func ask_chatgpt(text: String) -> void:
 		return
 
 
-func _on_request_completed(result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
+func _on_gemini_request_completed(result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
+	if result != 0 or response_code != 200:
+		print("Something went wrong")
+		transliteration_failed.emit("Something went wrong")
+		return
+	
+	var data: Dictionary = JSON.parse_string(body.get_string_from_utf8())
+	var text: String = data.candidates[0].content.parts[0].text
+	transliteration_received.emit(text)
+
+
+func _on_openai_request_completed(result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
 	if result != 0 or response_code != 200:
 		print("Something went wrong")
 		transliteration_failed.emit("Something went wrong")
@@ -87,6 +103,3 @@ func _on_request_completed(result: int, response_code: int, _headers: PackedStri
 	var data: Dictionary = JSON.parse_string(body.get_string_from_utf8())
 	var text: String = data.output[1].content[0].text
 	transliteration_received.emit(text)
-	
-	# Gemini response parsing
-	#var text: String = data.candidates[0].content.parts[0].text
