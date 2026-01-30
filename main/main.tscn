@@ -75,6 +75,7 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 36
+wrap_mode = 1
 
 [node name="Preview" type="TextEdit" parent="UI/Action Area/VBox/HBox" unique_id=1871398691]
 layout_mode = 2

@@ -1,7 +1,9 @@
 extends Node
 class_name TransliterateLLM
 
+
 signal transliteration_received
+signal transliteration_failed
 
 @export_multiline var system_prompt: String
 @export var http_request: HTTPRequest
@@ -44,11 +46,15 @@ func ask_gemini(text: String) -> void:
 	
 	if error != OK:
 		print("An error occured in HTTP request")
+		transliteration_failed.emit("An error occured in HTTP request")
+		return
 
 
 func _on_request_completed(result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
 	if result != 0 or response_code != 200:
 		print("Something went wrong")
+		transliteration_failed.emit("Something went wrong")
+		return
 	
 	var data: Dictionary = JSON.parse_string(body.get_string_from_utf8())
 	var text: String = data.candidates[0].content.parts[0].text
