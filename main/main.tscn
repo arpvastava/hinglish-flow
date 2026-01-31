@@ -5,11 +5,12 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4hihk"]
 
-[node name="Main" type="Node" unique_id=416299869 node_paths=PackedStringArray("input_te", "preview_te", "transliterate_btn", "transliterate_llm")]
+[node name="Main" type="Node" unique_id=416299869 node_paths=PackedStringArray("input_te", "preview_te", "transliterate_btn", "transliterate_options", "transliterate_llm")]
 script = ExtResource("1_53q0u")
 input_te = NodePath("UI/Action Area/VBox/HBox/Input")
 preview_te = NodePath("UI/Action Area/VBox/HBox/Preview")
 transliterate_btn = NodePath("UI/Action Area/VBox/Transliterate")
+transliterate_options = NodePath("UI/Action Area/Transliteration Type/Options")
 transliterate_llm = NodePath("Transliterate LLM")
 
 [node name="Transliterate LLM" parent="." unique_id=518322247 instance=ExtResource("2_pjrb6")]
@@ -58,11 +59,35 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_4hihk")
 
+[node name="Transliteration Type" type="HBoxContainer" parent="UI/Action Area" unique_id=1828133139]
+layout_mode = 1
+offset_top = -64.0
+offset_right = 186.0
+offset_bottom = -6.0
+theme_override_constants/separation = 24
+
+[node name="Label" type="Label" parent="UI/Action Area/Transliteration Type" unique_id=1454065426]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Transliteration Type"
+
+[node name="Options" type="OptionButton" parent="UI/Action Area/Transliteration Type" unique_id=291884882]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+selected = 0
+item_count = 2
+popup/item_0/text = "Gemini"
+popup/item_0/id = 0
+popup/item_1/text = "ChatGPT"
+popup/item_1/id = 1
+
 [node name="VBox" type="VBoxContainer" parent="UI/Action Area" unique_id=252050891]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 32.0
+offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 25

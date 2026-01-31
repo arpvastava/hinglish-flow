@@ -6,6 +6,7 @@ class_name Main
 @export var input_te: TextEdit
 @export var preview_te: TextEdit
 @export var transliterate_btn: Button
+@export var transliterate_options: OptionButton
 
 @export_group("Functionality")
 @export var transliterate_llm: TransliterateLLM
@@ -35,7 +36,12 @@ func _process(_delta: float) -> void:
 
 func _transliterate() -> void:
 	is_transliterating = true
-	transliterate_llm.ask_chatgpt(input_te.text)
+	
+	var option: int = transliterate_options.selected
+	if option == 0:
+		transliterate_llm.ask_gemini(input_te.text)
+	elif option == 1:
+		transliterate_llm.ask_chatgpt(input_te.text)
 
 
 func _on_transliteration_received(text: String) -> void:
