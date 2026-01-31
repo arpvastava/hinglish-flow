@@ -18,6 +18,7 @@ var is_transliterating: bool = false:
 		is_transliterating = value
 		
 		preview_te.text = ""
+		transliterate_btn.text = "Transliterating..." if is_transliterating else "Transliterate"
 		transliterate_btn.disabled = is_transliterating
 		input_te.editable = !is_transliterating
 

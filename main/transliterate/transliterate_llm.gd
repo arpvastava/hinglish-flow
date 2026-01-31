@@ -19,7 +19,7 @@ func _ready() -> void:
 
 
 func ask_gemini(text: String) -> void:
-	var url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=%s" % ENV.GEMINI_API
+	var url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=%s" % ENV.GEMINI_API
 	
 	var data = {
 		"system_instruction": {
@@ -64,7 +64,7 @@ func ask_chatgpt(text: String) -> void:
 	]
 	
 	var data: Dictionary = {
-		"model": "gpt-5",
+		"model": "gpt-5-mini",
 		"reasoning": { "effort": "low" },
 		"instructions": system_prompt,
 		"input": text
