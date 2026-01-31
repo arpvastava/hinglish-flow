@@ -19,6 +19,7 @@ var is_transliterating: bool = false:
 		
 		preview_te.text = ""
 		transliterate_btn.disabled = is_transliterating
+		input_te.editable = !is_transliterating
 
 
 func _ready() -> void:
@@ -35,6 +36,9 @@ func _process(_delta: float) -> void:
 
 
 func _transliterate() -> void:
+	if is_transliterating:
+		return
+	
 	is_transliterating = true
 	
 	var option: int = transliterate_options.selected
